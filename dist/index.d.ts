@@ -24,11 +24,12 @@ declare class VideoQuality {
     renderStream(): Promise<QualityRenderStream>;
     renderMultipleStream(): Promise<QualityRenderStream[]>;
     render(qualities: Quality[], type: 'base64' | 'stream'): Promise<(QualityRenderBase64 | QualityRenderStream)[]>;
-    max(max: Quality): this;
-    min(min: Quality): this;
+    maxQuality(max: Quality): this;
+    minQuality(min: Quality): this;
     skipOrigin(): this;
     remove(): void;
     removeOrigin(): void;
+    temp(tmp: string): void;
     private _middlewareVideoMp4Only;
     private _execute;
     private _bestVideoBitRateForResolution;

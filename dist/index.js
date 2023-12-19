@@ -29,12 +29,12 @@ class VideoQuality {
         this.MIN_QUALITY = '144p';
         this.PATH_OUTPUTS = [];
         this.QUALITY_LISTS = {
-            "144p": { prev: null, next: null, current: "240p" },
-            "240p": { prev: "144p", next: "360p", current: "240p" },
-            "360p": { prev: "240p", next: "480p", current: "360p" },
-            "480p": { prev: "360p", next: "720p", current: "480p" },
-            "720p": { prev: "480p", next: "1080p", current: "720p" },
-            "1080p": { prev: "720p", next: null, current: "1080p" }
+            "144p": { prev: null, next: "240p", },
+            "240p": { prev: "144p", next: "360p", },
+            "360p": { prev: "240p", next: "480p", },
+            "480p": { prev: "360p", next: "720p", },
+            "720p": { prev: "480p", next: "1080p", },
+            "1080p": { prev: "720p", next: null, }
         };
         this.PATH_VIDEO = path_1.default.join(path_1.default.resolve(), pathVideo);
         this.FFMPEG.setFfmpegPath(ffmpeg_1.default.path);
@@ -190,24 +190,23 @@ class VideoQuality {
             for (const getRangeOfQuality of getRangeOfQualities) {
                 promises.push(this._execute(getRangeOfQuality, 'stream'));
             }
-            const results = yield Promise.all(promises);
-            return results;
+            return yield Promise.all(promises);
         });
     }
     render(qualities, type) {
         return __awaiter(this, void 0, void 0, function* () {
             const promises = [];
-            for (const getRangeOfQuality of qualities)
+            for (const getRangeOfQuality of qualities) {
                 promises.push(this._execute(getRangeOfQuality, type));
-            const results = yield Promise.all(promises);
-            return results;
+            }
+            return yield Promise.all(promises);
         });
     }
-    max(max) {
+    maxQuality(max) {
         this.MAX_QUALITY = max;
         return this;
     }
-    min(min) {
+    minQuality(min) {
         this.MIN_QUALITY = min;
         return this;
     }
@@ -217,7 +216,6 @@ class VideoQuality {
     }
     remove() {
         for (const output of this.PATH_OUTPUTS) {
-            console.log(output);
             fs_1.default.unlinkSync(output);
         }
         return;
@@ -225,6 +223,9 @@ class VideoQuality {
     removeOrigin() {
         fs_1.default.unlinkSync(this.PATH_VIDEO);
         return;
+    }
+    temp(tmp) {
+        this.TEMP = tmp;
     }
     _middlewareVideoMp4Only() {
         if (mime_types_1.default.extension(String(mime_types_1.default.lookup(this.PATH_VIDEO))) === 'mp4')
