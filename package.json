@@ -1,0 +1,46 @@
+{
+  "name": "tspace-video-quality",
+  "version": "1.0.0",
+  "description": "easy to covert video quality",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thanathip41/tspace-video-quality.git"
+  },
+  "keywords": [
+    "tspace",
+    "video",
+    "quality",
+    "1080p",
+    "720p",
+    "480p",
+    "360p",
+    "240p",
+    "144p"
+  ],
+  "author": "Thanathip (https://github.com/thanathip41)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thanathip41/tspace-video-quality"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "mime-types": "^2.1.35"
+  },
+  "homepage": "https://github.com/thanathip41",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@types/fluent-ffmpeg": "^2.1.21",
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^16.4.0"
+  }
+}
